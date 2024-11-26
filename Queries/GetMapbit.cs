@@ -5,6 +5,6 @@ namespace Mapbit.Queries
 {
     public class GetMapbit : IQuery<MapbitDto>
     {
-        public Guid Id { get; set; }
+        public string Filename { get; set; }
     }
 }
