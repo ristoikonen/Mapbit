@@ -7,4 +7,6 @@ namespace Mapbit.Queries
     {
         public string Filename { get; set; }
     }
+
+    public record GetMessageQuery() : IQuery<MapbitDto>;
 }

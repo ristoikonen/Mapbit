@@ -8,4 +8,16 @@ namespace Mapbit.Commands
         MapbitWriteModel MapbitModel) : ICommand;
 
     public record MapbitWriteModel(string fileName, string embedMessage, uint Height, uint Width, Color uniformColor);
+
+
+    public record DecodeMapbit(string embedMessage,
+        MapbitReadModel MapbitModel) : ICommand;
+    
+
+    public record EncodeMapbit(string embedMessage,
+        MapbitReadModel MapbitModel) : ICommand;
+
+    public record MapbitReadModel(string fileName, string embedMessage, uint Height, uint Width, Color uniformColor);
+
+
 }
