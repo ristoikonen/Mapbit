@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
-
+using PixMapper;
 
 namespace Mapbit.Controllers
 {
@@ -16,7 +16,7 @@ namespace Mapbit.Controllers
     [ApiController]
     public class MapbitController : BaseController
     {
-
+        //TODO: CQRS additions
         private readonly ICommandDispatcher _commandDispatcher;
         
         //[HttpGet("{filename:string}")]
@@ -26,6 +26,12 @@ namespace Mapbit.Controllers
             // var result = await _queryDispatcher.QueryAsync(query);
             MapbitDto mapbit = new MapbitDto("","",0,0,Color.Black);
             var result = mapbit;
+
+            string bitmap_filename = @"c:\temp\img.bmp";
+            BitmapFactory f = new BitmapFactory();
+            f.Create("ABC", @"c:\temp\img.bmp", 100, 50, System.Drawing.Color.ForestGreen);
+            Console.WriteLine($"Created {bitmap_filename}");
+
             return OkOrNotFound(result);
         }
 
@@ -33,9 +39,15 @@ namespace Mapbit.Controllers
         public async Task<ActionResult<MapbitDto>> ReadMessage([FromRoute] IQuery query)
         {
             // var result = await _queryDispatcher.QueryAsync(query);
+            string bitmap_filename = @"c:\temp\img.bmp";
 
-            PixMapper.BitmapFactory f = new PixMapper.BitmapFactory();
-            var created = f.Create("", "", 10, 100, Color.Bisque);
+            BitmapFactory f = new BitmapFactory();
+            string msg = f.Read(bitmap_filename);
+
+            Console.WriteLine($"PixMapper - Read message :{msg}");
+
+            //PixMapper.BitmapFactory f = new PixMapper.BitmapFactory();
+            //var created = f.Create("", "", 10, 100, Color.Bisque);
 
             MapbitDto mapbit = new MapbitDto("", "", 0, 0, Color.Black);
             var result = mapbit;
