@@ -1,9 +1,8 @@
-## Pixdata Mapbit API and architecture
+## Introducing Mapbit API
 
-- API encodes/decodes text to/from a image of single color
-- Encoding is readable using any image editor.
+- API encodes/decodes text to/from a unicolor image
+- Encoding is basically readable using any image editor.
 - Encode/Decode is done by PixMapper class library
-
 
 
 ## Mapbit API Documentation
@@ -22,7 +21,7 @@ Creates bitmap with text encoded inside
 ```
 {
   text,
-  filename,
+  bitmap__filename,
   height,
   width,
   color
